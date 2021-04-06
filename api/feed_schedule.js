@@ -21,7 +21,12 @@ const handleFeedSchedule = (req, res) => {
 			message: "Date/Time and Quantity is required!",
 		});
 	}
-	if (quantity <= 0 && quantity > 1000) {
+	try {
+		quantity = parseInt(quantity);
+		if (isNaN(quantity) || quantity < 50 || quantity > 900) {
+			throw new Error("Invalid quantity!");
+		}
+	} catch (error) {
 		return res.send({
 			success: false,
 			message: "Please select quantity in range!",
