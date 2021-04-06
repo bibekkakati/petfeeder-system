@@ -1,7 +1,7 @@
 const release_food = require("../helper/release_food");
 
 const handleFeed = (req, res) => {
-	const { id, quantity } = req.body;
+	let { id, quantity } = req.body;
 	try {
 		quantity = parseInt(quantity);
 		if (isNaN(quantity) || !quantity || quantity < 50 || quantity > 900) {
