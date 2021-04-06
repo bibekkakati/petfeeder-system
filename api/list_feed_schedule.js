@@ -5,7 +5,6 @@ const handleListFeedSchedule = (req, res) => {
 	const scheduledJob = getScheduledJob(id);
 	if (scheduledJob) {
 		let date = scheduledJob.nextInvocation();
-		date = date.toString();
 		return res.send({
 			success: true,
 			id: scheduledJob.name,
