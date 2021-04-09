@@ -1,3 +1,4 @@
+require("dotenv").config();
 const app = require("./app");
 const server = require("http").createServer();
 const WS_SERVER = require("ws").Server;
