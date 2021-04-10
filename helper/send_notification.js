@@ -5,27 +5,30 @@ admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 });
 
-const payload = {
-	notification: {
-		title: "Hey! Hooman",
-		body: "Eating my food...Yummy! 🐶",
-	},
-};
-
-const options = {
-	priority: "high",
-	timeToLive: 60 * 60 * 24,
-};
-
 const send_notification = (registrationToken) => {
+	const message = {
+		notification: {
+			title: "Hey! Hooman",
+			body: "Eating my food...Yummy! 🐶",
+		},
+		token: registrationToken,
+		data: {
+			sound: "default",
+			clickAction: "FLUTTER_NOTIFICATION_CLICK",
+		},
+		android: {
+			ttl: 24 * 60 * 60 * 1000,
+			notification: {
+				sound: "default",
+			},
+		},
+	};
 	admin
 		.messaging()
-		.sendToDevice(registrationToken, payload, options)
-		.then((response) => {
-			console.log("Successfully sent message:", response);
-		})
+		.send(message)
+		.then((response) => {})
 		.catch((error) => {
-			console.log("Error sending message:", error);
+			console.error("Error sending message:", error);
 		});
 };
 
