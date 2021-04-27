@@ -4,9 +4,9 @@ const privateKey = fs.readFileSync("./keys/private.key");
 const issue_token = (id) => {
 	try {
 		const token = jwt.sign({}, privateKey, {
-			algorithm: "RS256",
+			algorithm: process.env.JWT_ALGORITHM,
 			expiresIn: 60 * 60 * 24 * 30,
-			issuer: "PawFeeder",
+			issuer: process.env.JWT_ISSUER,
 			jwtid: id,
 		});
 		return token || true;
