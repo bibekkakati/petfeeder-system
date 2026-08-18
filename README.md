@@ -1,4 +1,4 @@
-## PawFeeder
+## Pet Feeder
 
 A Nodejs server built for a remote petfeeder system.
 
